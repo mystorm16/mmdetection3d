@@ -3,12 +3,22 @@ from os import path as osp
 
 import mmcv
 import torch
+import time
 from mmcv.image import tensor2imgs
 
 from mmdet3d.models import (Base3DDetector, Base3DSegmentor,
                             SingleStageMono3DDetector)
 
+#计时函数
+def get_time():
+    """
+    :return: get timing statistics
+    """
+    torch.cuda.synchronize()
+    return time.time()
 
+# end = get_time()
+#     print("Reconstructed %d objects in the scene, time elapsed: %f seconds" % (len(objects_recon), end - start))
 def single_gpu_test(model,
                     data_loader,
                     show=False,

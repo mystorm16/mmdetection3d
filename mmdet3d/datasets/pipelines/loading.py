@@ -318,11 +318,11 @@ class NormalizePointsColor(object):
         """
         points = results['points']
         assert points.attribute_dims is not None and \
-            'color' in points.attribute_dims.keys(), \
+               'color' in points.attribute_dims.keys(), \
             'Expect points have color attribute'
         if self.color_mean is not None:
             points.color = points.color - \
-                points.color.new_tensor(self.color_mean)
+                           points.color.new_tensor(self.color_mean)
         points.color = points.color / 255.0
         results['points'] = points
         return results
@@ -419,7 +419,13 @@ class LoadPointsFromFile(object):
         """
         pts_filename = results['pts_filename']
         points = self._load_points(pts_filename)
+
+        # 加这两行保证点云可以被整除，防止reshape报错
+        points_num = points.size // 6
+        points = points[:points_num * 6]
+
         points = points.reshape(-1, self.load_dim)
+
         points = points[:, self.use_dim]
         attribute_dims = None
 

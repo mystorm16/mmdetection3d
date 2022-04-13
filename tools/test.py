@@ -1,4 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import time
 import argparse
 import os
 import warnings
@@ -23,6 +24,7 @@ try:
     from mmdet.utils import setup_multi_processes
 except ImportError:
     from mmdet3d.utils import setup_multi_processes
+
 
 
 def parse_args():
@@ -120,6 +122,7 @@ def parse_args():
 
 
 def main():
+    # start = get_time()
     args = parse_args()
 
     assert args.out or args.eval or args.format_only or args.show \
@@ -217,7 +220,7 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=cfg.gpu_ids)
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)
+        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)  # 在这里process
     else:
         model = MMDistributedDataParallel(
             model.cuda(),

@@ -103,7 +103,7 @@ class ScanNetData(object):
         """
 
         def process_single_scene(sample_idx):
-            print(f'{self.split} sample_idx: {sample_idx}')
+            print(f'{self.split} sample_idx::: {sample_idx}')
             info = dict()
             pc_info = {'num_features': 6, 'lidar_idx': sample_idx}
             info['point_cloud'] = pc_info
@@ -194,7 +194,9 @@ class ScanNetData(object):
         sample_id_list = sample_id_list if sample_id_list is not None \
             else self.sample_id_list
         with futures.ThreadPoolExecutor(num_workers) as executor:
-            infos = executor.map(process_single_scene, sample_id_list)
+            infos = executor.map(process_single_scene, ['scene0010_00'])
+            # infos = executor.map(process_single_scene, sample_id_list)
+            print("------------------")
         return list(infos)
 
 

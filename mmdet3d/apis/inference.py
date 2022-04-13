@@ -400,7 +400,7 @@ def show_seg_result_meshlab(data,
     return file_name
 
 
-def show_proj_det_result_meshlab(data,
+def show_prosj_det_result_meshlab(data,
                                  result,
                                  out_dir,
                                  score_thr=0.0,

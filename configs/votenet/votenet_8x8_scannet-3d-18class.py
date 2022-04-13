@@ -2,7 +2,7 @@ _base_ = [
     '../_base_/datasets/scannet-3d-18class.py', '../_base_/models/votenet.py',
     '../_base_/schedules/schedule_3x.py', '../_base_/default_runtime.py'
 ]
-
+# 采样点数目修改：/home/robot413/mmdetection3d/configs/_base_/datasets/scannet-3d-18class.py
 # model settings
 model = dict(
     bbox_head=dict(

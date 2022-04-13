@@ -132,7 +132,7 @@ test_pipeline = [
                 sync_2d=False,
                 flip_ratio_bev_horizontal=0.5,
                 flip_ratio_bev_vertical=0.5),
-            dict(type='PointSample', num_points=50000),
+            dict(type='PointSample', num_points=5000),
             dict(
                 type='DefaultFormatBundle3D',
                 class_names=class_names,
